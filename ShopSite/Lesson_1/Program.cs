@@ -17,6 +17,11 @@ builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IProductService, ProductService>();
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<IOrderService, OrderService>();
+builder.Services.AddTransient<IOrderItemRepository, OrderItemRepository>();
+builder.Services.AddTransient<IOrderItemService, OrderItemService>();
+
 
 builder.Services.AddDbContext<StoryDbContext>(option => option.UseSqlServer("Data Source=SRV2\\PULIPS;Integradted Security=True"));
 

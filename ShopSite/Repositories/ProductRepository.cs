@@ -33,11 +33,11 @@ namespace Repositories
             return await _storyDbContext.Products.FindAsync(id);
 
         }
-        public async Task<Product> CreateProductAsync(Product product)
+        public async Task<Product> CreateProductAsync(Product newProduct)
         {
-            await _storyDbContext.Products.AddAsync(product);
+            await _storyDbContext.Products.AddAsync(newProduct);
             await _storyDbContext.SaveChangesAsync();
-            return product;
+            return newProduct;
 
         }
 
