@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Login.js"></script>
+    <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+
+        #login-form, #signup-form {
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            padding: 20px;
+            width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+            #login-form h2, #signup-form h2 {
+                margin-top: 0;
+                color: #333;
+            }
+
+            #login-form input, #signup-form input {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+                font-size: 16px;
+            }
+
+            #login-form button, #signup-form button {
+                background-color: #4CAF50;
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+                #login-form button:hover, #signup-form button:hover {
+                    background-color: #3e8e41;
+                }
+
+        #signup-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+            #signup-link a {
+                color: #4CAF50;
+                text-decoration: none;
+            }
+
+                #signup-link a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+
+
+            <div id="login-form">
+                <h2>Sign In</h2>
+                <!--<form>-->
+
+                    <br /><br />
+                    <input id="userNameLogIn" type="text" placeholder="user name" /><br /><br />
+                    <input id="userPasswordLogIn" type="password" placeholder="user password" /><br /><br />
+
+                <!--<form />-->
+                    <button id="signIn" onclick="signIn()">log in</button><br /><br /><br />
+                    <!--<button id="newUser" onclick="newUser()">new user</button>-->
+
+                    <div id="signup-link">
+                        <a onclick="document.getElementById('signup-form').style.display = 'block'">Create an account</a>
+                    </div>
+
+
+
+
+</div>
+            <div id="signup-form" style="display: none;">
+                <h2>Sign Up</h2>
+
+                <form />
+
+                <br /><br /><br /><br />
+                <label> email</label>
+                <input id="email" type="email" /><br /><br />
+                <label>password</label>
+
+                <input id="password" onchange="getPasswordStrength()" onkeypress="getPasswordStrength()" type="password" />
+                <progress id="passwordStrength" value="0" max="4" style="background-color: #4CAF50">  </progress><br /><br />
+
+                <label>last name</label>
+                <input id="lastName" type="text" /><br /><br />
+                <label>first name</label>
+                <input id="firstName" type="text" /><br /><br />
+                <button onclick="signUp()">register </button>
+
+                <form>
+
+
+            </div>
+
+</body>
+
+</html>
+
+
