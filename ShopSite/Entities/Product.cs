@@ -18,7 +18,7 @@ public partial class Product
 
     public string? Image { get; set; }
 
-
+    [JsonIgnore]
     public virtual Category Category { get; set; } = null!;
 
 

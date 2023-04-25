@@ -14,6 +14,6 @@ public partial class Order
 
     [JsonIgnore]
     public virtual ICollection<OrderItem> OrderItems { get; } = new List<OrderItem>();
-
+    [JsonIgnore]
     public virtual User User { get; set; } = null!;
 }
