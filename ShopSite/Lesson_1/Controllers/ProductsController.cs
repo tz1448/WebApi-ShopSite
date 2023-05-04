@@ -17,10 +17,11 @@ public class ProductsController : ControllerBase
         }
     // GET: api/<ProductsController>
     [HttpGet]
-    public async Task<ActionResult<List<Product>>> Get()
+    public async Task<ActionResult<List<Product>>> Get([FromQuery]  String? desc, [FromQuery]  int? minPrice, [FromQuery] int? maxPrice, [FromQuery] int?[] categories )
     {
 
-            List < Product > products= await _productService.GetAllProductsAsync();
+            List < Product > products= await _productService.GetAllProductsAsync(desc, minPrice, maxPrice,categories );
+
             return products == null ? NotFound() : Ok(products);
     }
 
