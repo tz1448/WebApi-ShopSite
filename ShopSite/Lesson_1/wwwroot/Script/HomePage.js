@@ -69,11 +69,12 @@ async function filterProducts() {
 
     let urlString = 'api/Products?';
     if (desc)
-        urlString += `desc=${desc}`
+         urlString+= `desc=${desc}`
     if (minPrice)
-        urlString += `&minPrice=${minPrice}`
+        urlString.endsWith('?') ? urlString += `minPrice=${minPrice}` : urlString += `&minPrice=${minPrice}`
     if (maxPrice)
-        urlString += `&maxPrice=${maxPrice}`
+        urlString.endsWith('?') ? urlString += `maxPrice=${maxPrice}` : urlString += `&maxPrice=${maxPrice}`
+    
 
     selectedCategories.forEach(selectedCategory => { urlString += '&categories=' + selectedCategory })
 
