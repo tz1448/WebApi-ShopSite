@@ -18,10 +18,32 @@ namespace Repositories
             _storyDbContext = storyDbContext;
         }
 
-        public async Task<List<Product>> GetAllProductsAsync()
+        public async Task<List<Product>> GetAllProductsAsync(String? desc, int? minPrice, int? maxPrice, int?[] categories)
         {
 
-            return await _storyDbContext.Products.Include(product => product.Category).ToListAsync();
+
+
+            return await _storyDbContext.Products.Where(product =>
+                                                          ( minPrice == null ? true: product.Price >= minPrice)
+                                                          &&( maxPrice == null ? true: product.Price<= maxPrice)
+                                                          
+                                                          &&( categories.Length == 0? true : categories.Contains(product.CategoryId))
+                                                        
+                                                            &&( desc == null ? true : product.Description.Contains(desc))
+                                                      
+
+                                                            ).Include(product => product.Category).ToListAsync();
+                                                           
+                                                            
+                                                           
+
+
+           
+                
+                
+                
+                
+            
 
 
         }
