@@ -5,9 +5,13 @@
     let lastName = document.getElementById("lastName").value;
     let user = JSON.stringify({ email, password, firstName, lastName })
     // let user = { email: email, password: password, firstName: firstName, lastName: lastName }
-
+    if (!email || !password || !firstName || !user) {
+        document.querySelector('#msg').innerHTML = 'All filed required'
+        return;
+    }
     if (document.getElementById("passwordStrength").value < 2) {
-        alert("password invalid");
+        document.querySelector('#msg').innerHTML = 'Password too weak. Please choose a stronger password'
+   
        
     }
 
@@ -21,8 +25,10 @@
 
         if (res.status == 200 ||201) {
            //if (res.ok) {
-          alert("user addded");
-            }
+            alert("user addded");
+            document.location = "/SignIn.html"
+
+        }
   
     else {
       alert("error in details");
@@ -30,15 +36,6 @@
         
 }
 }
-
-
-
-
-
-
-
-
-
 
 const newUser = () => {
 
@@ -49,10 +46,13 @@ const newUser = () => {
 
 const signIn = async () => {
 
-    let email = document.getElementById("userNameLogIn").value;
-    let password = document.getElementById("userPasswordLogIn").value;
-
-
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+   
+    if (!email || !password)
+    {
+        return;
+    }
     let User = JSON.stringify({ email, password, });
     const res = await fetch("api/Users/signIn",
         {
@@ -60,11 +60,14 @@ const signIn = async () => {
             headers: { 'Content-Type': 'application/json' },
             body: User
         })
-
+ 
     if (res.ok) {
+        console.log('aaa');
         const user = await res.json();
-        sessionStorage.setItem('user', user)
-        document.location = "/UserDetails.html"
+        sessionStorage.setItem('user', JSON.stringify(user))
+        document.location = "/Products.html"
+    } else {
+        document.querySelector('#msg').innerHTML = 'user name or password are incorrect'
     }
 
 

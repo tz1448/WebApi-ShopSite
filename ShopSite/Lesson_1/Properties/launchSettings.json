@@ -33,7 +33,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "M:\\API\\ShopSite\\ShopSite\\Lesson_1\\wwwroot\\Html\\HomePage.html", //"\\Html\\HomePage.html",
+      "launchUrl": "signIn.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

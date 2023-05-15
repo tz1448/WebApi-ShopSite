@@ -5,11 +5,13 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web-Api", "Lesson_1\Web-Api.csproj", "{2BBFD65F-1E27-4E3F-A126-EEF7C5B34123}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Repositories\Repositories.csproj", "{A19609F6-F0C2-4833-9204-F51150AD99E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "Repositories\Repositories.csproj", "{A19609F6-F0C2-4833-9204-F51150AD99E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{C88C7FF4-AACF-49E0-AA82-EBB9AF1C797A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{C88C7FF4-AACF-49E0-AA82-EBB9AF1C797A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{E1953B72-97AB-470F-AE5F-053A3CE6D1FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{E1953B72-97AB-470F-AE5F-053A3CE6D1FA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTO", "Dto\DTO.csproj", "{9970FAE4-ECA7-4607-86BF-954FCC56106A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E1953B72-97AB-470F-AE5F-053A3CE6D1FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1953B72-97AB-470F-AE5F-053A3CE6D1FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1953B72-97AB-470F-AE5F-053A3CE6D1FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9970FAE4-ECA7-4607-86BF-954FCC56106A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9970FAE4-ECA7-4607-86BF-954FCC56106A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9970FAE4-ECA7-4607-86BF-954FCC56106A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9970FAE4-ECA7-4607-86BF-954FCC56106A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

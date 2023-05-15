@@ -2,6 +2,8 @@
 using Services;
 using Entities;
 using System.Collections.Generic;
+using AutoMapper;
+using DTO;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Lesson1_login.Controllers
@@ -11,37 +13,46 @@ namespace Lesson1_login.Controllers
 public class ProductsController : ControllerBase
     {
         IProductService _productService;
-        public ProductsController(IProductService productService)
+        IMapper _mapper;
+        public ProductsController(IProductService productService, IMapper mapper)
         {
             _productService = productService;
+            _mapper = mapper;
         }
     // GET: api/<ProductsController>
     [HttpGet]
-    public async Task<ActionResult<List<Product>>> Get([FromQuery]  String? desc, [FromQuery]  int? minPrice, [FromQuery] int? maxPrice, [FromQuery] int?[] categories )
+    public async Task<ActionResult<List<ProductDto>>> Get([FromQuery]  String? desc, [FromQuery]  int? minPrice, [FromQuery] int? maxPrice, [FromQuery] int?[] categories )
     {
 
-            List < Product > products= await _productService.GetAllProductsAsync(desc, minPrice, maxPrice,categories );
-
-            return products == null ? NotFound() : Ok(products);
+            List <Product> products= await _productService.GetAllProductsAsync(desc, minPrice, maxPrice,categories );
+            List<ProductDto> productsDto = _mapper.Map<List<Product>, List<ProductDto>>(products);
+            return products == null ? NotFound() : Ok(productsDto);
     }
 
     // GET api/<ProductsController>/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<Product>> Get(int id)
+    public async Task<ActionResult<ProductDto>> Get(int id)
     {
 
             Product product = await _productService.GetProductByIdAsync(id);
-           return product == null ? NoContent() : Ok(product);
+            ProductDto  ProductDto = _mapper.Map<Product, ProductDto>(product);
+            return product == null ? NoContent() : Ok(ProductDto);
         }
 
     // POST api/<ProductsController>
     [HttpPost]
-    public async  Task<ActionResult<Product>> Post([FromBody] Product newProduct)
+    public async  Task<ActionResult<Product>> Post([FromBody] Product product)
     {
-            Product product = await _productService.CreateProductAsync(newProduct);
-            return product == null ? NoContent() : Ok(product);
+            //Product product = _mapper.Map<ProductDto,Product >(newProductDto);
+            //Product newProduct = await _productService.CreateProductAsync(product);
+            //ProductDto ProductDto = _mapper.Map<Product, ProductDto>(newProduct);
+            //return newProduct == null ? NoContent() : Ok(ProductDto);
+          
+            Product newProduct = await _productService.CreateProductAsync(product);
+       
+            return newProduct == null ? NoContent() : Ok(newProduct);
         }
 
-  
-}
+
+    }
 }

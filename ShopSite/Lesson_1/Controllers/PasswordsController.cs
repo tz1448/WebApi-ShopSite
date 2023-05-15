@@ -17,38 +17,14 @@ public class PasswordsController : ControllerBase
             _passwordsService = passwordsService;
 
         }
-    // GET: api/<PasswordsController>
-    [HttpGet]
-        
-        public IEnumerable<string> Get()
-    {
-        return new string[] { "value1", "value2" };
-    }
-
-    // GET api/<PasswordsController>/5
-    [HttpGet("{id}")]
-    public string Get(int id)
-    {
-        return "value";
-    }
-
-    // POST api/<PasswordsController>
-    [HttpPost]
-    public int Post([FromBody] Password password)
-    {
+        // POST api/<PasswordsController>
+        [HttpPost]
+        public int Post([FromBody] Password password)
+        {
             return _passwordsService.getPasswordRate(password);
-    }
+        }
 
-    // PUT api/<PasswordsController>/5
-    [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string value)
-    {
-    }
 
-    // DELETE api/<PasswordsController>/5
-    [HttpDelete("{id}")]
-    public void Delete(int id)
-    {
+
     }
-}
 }

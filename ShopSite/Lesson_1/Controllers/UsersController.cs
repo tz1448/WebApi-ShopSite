@@ -1,9 +1,11 @@
 ﻿
+using AutoMapper;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 using System.Text.Json;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using DTO;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,42 +18,43 @@ namespace Lesson1_login.Controllers
 
         IUsersService _usersService;
         IPasswordsServices _passwordsService;
-        public UsersController(IUsersService usersService, IPasswordsServices passwordsService)
+        IMapper _mapper;
+
+        public UsersController(IUsersService usersService, IPasswordsServices passwordsService,IMapper mapper)
+
         {
             _usersService = usersService;
             _passwordsService=passwordsService;
-    }
+            _mapper = mapper;
+        }
         
-        // GET: api/<LoginController>
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return usersService.GetUserById(id);
-        //}
+       
 
         // GET api/<LoginController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> Get(int id)
+        public async Task<ActionResult<UserDto>> Get(int id)
         {
             User user =await  _usersService.GetUserByIdAsync(id);
-            return user == null ? NotFound() :user;
+            UserDto userDto = _mapper.Map<User, UserDto>(user);
+            return user == null ? NotFound() :userDto;
                    
         }
       
 
         // POST api/<LoginController>
         [HttpPost]
-        public async Task<ActionResult<User>> Post([FromBody] User user)
+        public async Task<ActionResult<UserDto>> Post([FromBody] User newUser)
         {
-            Password pass = new Password(user.Password);
+            Password pass = new Password(newUser.Password);
             if(_passwordsService.getPasswordRate(pass)>2)
             {
-                User userCreated =await _usersService.CreateUserAsync(user);
+                User userCreated =await _usersService.CreateUserAsync(newUser);
+                UserDto userDto = _mapper.Map<User, UserDto>(userCreated);
                 if (userCreated != null)
-                    return CreatedAtAction(nameof(Get), new { id = userCreated.Id }, userCreated);
+                    return CreatedAtAction(nameof(Get), new { id = userCreated.Id }, userDto);
             }
 
-            return BadRequest("email already exists"); ;
+            return BadRequest();
 
 
         }
@@ -59,29 +62,15 @@ namespace Lesson1_login.Controllers
         [HttpPost]
         [Route("signIn")]
        // public ActionResult<User> Post1([FromBody] string password,string email)
-       public async Task<ActionResult<User>> SignIn([FromBody] User data)
+       public async Task<ActionResult<UserDto>> SignIn([FromBody] UserLoginDto dataDto)
         {
+            User data = _mapper.Map<UserLoginDto, User>(dataDto);
             User user =await _usersService.SignInAsync(data);
-            return user == null ? NotFound() : user;
+            UserDto userDto = _mapper.Map<User, UserDto>(user);
+            return userDto == null ? NotFound() : Ok(userDto);
 
 
         }
-      //  PUT api/<LoginController>
-       
-        [HttpPut("{id}")]
-        public async Task Put(int id, [FromBody] User userToUpdate)
-        {
-           await _usersService.UpdateUserAsync(id, userToUpdate);
-           
-
-
-        }
-
-        // DELETE api/<LoginController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-            //return nameof(GetUserById, user.UserId, user)
-        }
+      
     }
 }

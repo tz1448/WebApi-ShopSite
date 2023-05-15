@@ -1,0 +1,46 @@
+﻿
+    <html>
+        <head>
+            <link href="Style/SignIn.css" rel="stylesheet" />
+            <script src="Script/Login.js"></script>
+            <meta charset="utf-8" />
+            <title></title>
+        </head>
+        <body><br /><br /><br />
+
+
+                          <form>
+                              <br />
+                              <h1> SIGN UP</h1>
+                              <div class="inset">
+                                  <p>
+                                      <label for="email">EMAIL ADDRESS</label>
+                                      <input type="text" name="email" id="email">
+                                  </p>
+                                  <p>
+                                      <label for="password">PASSWORD</label>
+                                      <input id="password" onchange="getPasswordStrength()" onkeypress="getPasswordStrength()" type="password" />
+                                      <progress id="passwordStrength" value="0" max="4" style="background-color: #4CAF50">  </progress><br /><br />
+                                  </p>
+                                  <label>LAST NAME</label>
+                                  <input id="lastName" type="text" /><br /><br />
+                                  <label>FIRST NAME</label>
+                                  <input id="firstName" type="text" /><br /><br />
+
+
+
+                                  <p>
+
+                                      <label id="msg" style="color:azure"></label>
+
+                                  </p>
+                              </div>
+                              <p class="p-container">
+
+                                  <span><a href="SignIn.html">Sign in</a></span>
+
+                                  <input type="button" onclick="signUp()" name="go" id="go" value="Sign Up">
+                              </p>
+                          </form>
+        </body>
+    </html>
