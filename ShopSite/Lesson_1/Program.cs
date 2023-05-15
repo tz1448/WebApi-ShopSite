@@ -24,7 +24,7 @@ builder.Services.AddTransient<IOrderItemService, OrderItemService>();
 
 
 builder.Services.AddDbContext<StoryDbContext>(option => option.UseSqlServer("Data Source=SRV2\\PULIPS;Integradted Security=True"));
-
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 var app = builder.Build();

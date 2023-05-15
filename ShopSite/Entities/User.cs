@@ -19,8 +19,5 @@ public partial class User
     [JsonIgnore]
     public virtual ICollection<Order> Orders { get; } = new List<Order>();
 
-    public static implicit operator User?(Category? v)
-    {
-        throw new NotImplementedException();
-    }
+   
 }

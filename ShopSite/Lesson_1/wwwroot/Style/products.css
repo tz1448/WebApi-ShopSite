@@ -1,7 +1,4 @@
-﻿
-    html, body
-
-{
+﻿html, body {
     direction: rtl;
     margin: 0;
     padding: 0;
@@ -42,11 +39,18 @@ ul {
     padding: 15px;
     float: left;
     height: 550px;
+    width: 300px;
     margin: 6px;
 }
 
 .img-w {
+    height:300px;
+    width:100%;
+}
+
+.img-w img{
     height: 300px;
+    width: 200px;
 }
 
 p.description {
@@ -54,7 +58,7 @@ p.description {
 }
 
 .bar::before {
-    content: 'חנות הצעצועים שלי';
+    content: 'MY WALL STICKER SHOP';
     color: white;
     /* display: inline-block; */
     position: absolute;
@@ -228,4 +232,3 @@ p.description {
         .pagination a:hover:not(.active) {
             background-color: #ddd;
         }
-

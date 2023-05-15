@@ -5,9 +5,9 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Entities
+namespace DTO
 {
-    public class ProductDTO
+    public class ProductDto
     {
 
         public int Id { get; set; }
@@ -16,15 +16,13 @@ namespace Entities
 
         public string? Description { get; set; }
 
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
 
-        public int CategoryName { get; set; }
+        public string? CategoryName { get; set; }
         
         public int Price { get; set; }
 
         public string? Image { get; set; }
-
-    
 
 
     }

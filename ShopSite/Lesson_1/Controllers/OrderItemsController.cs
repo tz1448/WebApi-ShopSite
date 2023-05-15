@@ -11,8 +11,6 @@ namespace Lesson1_login.Controllers
     public class OrderItemsController : ControllerBase
     {
 
-
-
         IOrderItemService _orderItemService;
         public OrderItemsController(IOrderItemService orderItemService)
         {

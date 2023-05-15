@@ -1,9 +1,8 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-
-    <script src="Script/HomePage.js"></script>
-    <link href="Style/HomePage.css" rel="stylesheet" />
+    <link href="Style/Products.css" rel="stylesheet" />
+    <script src="Script/Products.js"></script>
     <meta charset="utf-8" />
     <title></title>
     <template id="temp-card">
@@ -18,7 +17,10 @@
             <h1 class="name"></h1>
             <p class="price"></p>
             <p class="description"></p>
-            <p><button>הוסף לסל</button></p>
+            <p><button id="5">
+                   <!--<img style="width:40px" src="Icons/add.png" />-->
+    הוסף לסל
+    </button></p>
         </div>
     </template>
 
@@ -42,7 +44,7 @@
                         <a href="#" title="כניסה לצפייה בפרטי החשבון" onclick="TrackLinkID(this);" accesskey="h">החשבון שלי</a>
                     </li>
                     <li>
-                        <a href="#" title="קניה מהירה">קניה מהירה</a>
+                        <a href="#"  title="קניה מהירה">קניה מהירה</a>
                     </li>
                     <li>
                         <a href="#" title="עזרה - שאלות נפוצות, כיצד לקנות באינטרנט, מדריך ועוד" target="_blank">עזרה</a>
@@ -53,15 +55,19 @@
             <span class="BagSummary MiniBagNonSecure">
                 <a href="shoppingbag.html">
                     <div class="Icon">
-                        <div class="ItemCount">
-                            <span id="ItemsCountText">0</span>
-                        </div>
-                    </div>
+                        
+                        
+    <div class="ItemCount">
+
+        <span id="ItemsCountText">0</span>
+    </div>
+
+</div>
 
                 </a>
             </span>
             <div class="Checkout ">
-                <a class="goToCart" href="ShoppingBag.html">לקופה</a>
+                <a class="goToCart" href="ShoppingBag.html">לקופה<img style="width:15px" src="Icons/add.png" /></a>
             </div>
 
 
