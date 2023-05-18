@@ -19,13 +19,14 @@ namespace Lesson1_login.Controllers
         IUsersService _usersService;
         IPasswordsServices _passwordsService;
         IMapper _mapper;
-
-        public UsersController(IUsersService usersService, IPasswordsServices passwordsService,IMapper mapper)
+        ILogger<UsersController> _logger;
+        public UsersController(IUsersService usersService, IPasswordsServices passwordsService,IMapper mapper, ILogger<UsersController> logger)
 
         {
             _usersService = usersService;
             _passwordsService=passwordsService;
             _mapper = mapper;
+            _logger = logger;
         }
         
        
@@ -61,12 +62,14 @@ namespace Lesson1_login.Controllers
         //POST api/<LoginController>
         [HttpPost]
         [Route("signIn")]
-       // public ActionResult<User> Post1([FromBody] string password,string email)
+      
        public async Task<ActionResult<UserDto>> SignIn([FromBody] UserLoginDto dataDto)
         {
+            _logger.LogInformation($"Login attempted with  email {dataDto.Email} and password{dataDto.Password}");
             User data = _mapper.Map<UserLoginDto, User>(dataDto);
             User user =await _usersService.SignInAsync(data);
             UserDto userDto = _mapper.Map<User, UserDto>(user);
+           
             return userDto == null ? NotFound() : Ok(userDto);
 
 

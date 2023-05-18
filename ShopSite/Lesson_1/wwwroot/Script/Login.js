@@ -1,4 +1,23 @@
-﻿const signUp = async () => {
+﻿const getPasswordStrength = async () =>{
+
+    let password = document.getElementById("password").value;
+    if (password != '') {
+  const response = await fetch('/api/passwords',
+         {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'}
+        ,body: JSON.stringify({ password: password })
+    }
+       
+    );
+    const data = await response.json();
+    console.log(data);
+    document.getElementById("passwordStrength").value = data;
+
+    }
+  
+}
+const signUp = async () => {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
     let firstName = document.getElementById("firstName").value;
@@ -51,6 +70,7 @@ const signIn = async () => {
    
     if (!email || !password)
     {
+        document.querySelector('#msg').innerHTML = 'All fields are required'
         return;
     }
     let User = JSON.stringify({ email, password, });
@@ -67,7 +87,7 @@ const signIn = async () => {
         sessionStorage.setItem('user', JSON.stringify(user))
         document.location = "/Products.html"
     } else {
-        document.querySelector('#msg').innerHTML = 'user name or password are incorrect'
+        document.querySelector('#msg').innerHTML = 'User name or password are incorrect'
     }
 
 
@@ -77,56 +97,50 @@ const signIn = async () => {
 } 
 
 
-const load = async () => {
+const loadDetails = async () => {
 
-    const user = await JSON.parse(sessionStorage.getItem('user'));
-    document.getElementById('email').setAttribute('value', user.email);
-    document.getElementById('password').setAttribute('value', user.password);
-    document.getElementById('firstName').setAttribute('value', user.firstName);
-    document.getElementById('lastName').setAttribute('value', user.lastName);
+    const user = JSON.parse(sessionStorage.getItem('user'));
+
+    document.getElementById('email').value= user.email 
+    document.getElementById('firstName').value=user.firstname
+    document.getElementById('lastName').value= user.lastname
+   
 
 
 }
-const update = async () => {
+const updateUserDetails = async () => {
 
 
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
     let firstName = document.getElementById("firstName").value;
     let lastName = document.getElementById("lastName").value;
-    let id = await JSON.parse(sessionStorage.getItem('user')).userId
-    let userId = id
-    let user = JSON.stringify({ userId, email, password, firstName, lastName })
+    let user =JSON.parse(sessionStorage.getItem('user'))
+
+    if (document.getElementById("passwordStrength").value < 2) {
+        
+            document.querySelector('#msg').innerHTML = 'Password too weak. Please choose a stronger password'
+            return;
+        }
+   
+        let userDetails =JSON.stringify({ userId:user.id, email, password, firstName, lastName })
 
 
-    const response = await fetch(`api/users/${id}`,
-        {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: user
-        })
+    const response = await fetch(`api/users/${user.id}`,
+            {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: userDetails
+            })
+
+
+        console.log(response)
+        if (response.ok)
+            document.querySelector('#msg').innerHTML = 'The user details has been updated successfully'
 
 
 
 }
 
 
-const getPasswordStrength = async () =>{
 
-    let password = document.getElementById("password").value;
-    if (password != '') {
-  const response = await fetch('/api/passwords',
-         {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json'}
-        ,body: JSON.stringify({ password: password })
-    }
-       
-    );
-    const data = await response.json();
-    console.log(data);
-    document.getElementById("passwordStrength").value = data;
-
-    }
-  
-}

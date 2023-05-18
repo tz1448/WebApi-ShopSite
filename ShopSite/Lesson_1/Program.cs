@@ -1,5 +1,7 @@
 using Entities;
+using Lesson1_login;
 using Microsoft.EntityFrameworkCore;
+using NLog.Web;
 using Repositories;
 using Services;
 
@@ -21,7 +23,7 @@ builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<IOrderItemRepository, OrderItemRepository>();
 builder.Services.AddTransient<IOrderItemService, OrderItemService>();
-
+builder.Host.UseNLog();
 
 builder.Services.AddDbContext<StoryDbContext>(option => option.UseSqlServer("Data Source=SRV2\\PULIPS;Integradted Security=True"));
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -37,6 +39,7 @@ if(app.Environment.IsDevelopment())
 }
 // Configure the HTTP request pipeline.
 
+app.UseErrorHandlingMiddleWare();
 app.UseStaticFiles();
 
 app.UseHttpsRedirection();
@@ -45,4 +48,17 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+
+
+
+    app.Use(async (context, next) =>
+    {
+        await next(context);
+        if (context.Response.StatusCode == 404)
+        {
+           context.Response.ContentType = "text/html";
+            await context.Response.SendFileAsync("./wwwroot/Error404.html");
+        }
+    });
 app.Run();
+

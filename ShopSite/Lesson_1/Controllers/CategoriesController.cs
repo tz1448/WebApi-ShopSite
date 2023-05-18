@@ -27,6 +27,7 @@ namespace Lesson1_login.Controllers
         [HttpGet]
         public async Task<ActionResult<List<CategoryDto>>> Get()
         {
+            
 
             List<Category> categories = await _categoryService.GetAllCategoryAsync();
             List<CategoryDto> categoriesDto = _mapper.Map<List<Category>, List<CategoryDto>>(categories);
@@ -34,6 +35,7 @@ namespace Lesson1_login.Controllers
         }
 
         // GET api/<CategoriesController>/5
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<CategoryDto>> Get(int id)
         {

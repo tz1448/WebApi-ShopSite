@@ -45,9 +45,11 @@ public partial class StoryDbContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
+            entity.ToTable("Order");
             entity.HasKey(e => e.Id).HasName("PK_Order");
 
             entity.Property(e => e.Id).HasColumnName("ID");
+           
             entity.Property(e => e.Ordersum).HasColumnName("ORDERSUM");
             entity.Property(e => e.UserId).HasColumnName("USER_ID");
 

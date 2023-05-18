@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Services;
 using Entities;
+using DTO;
+using System.Collections.Generic;
+using AutoMapper;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Lesson1_login.Controllers
@@ -10,34 +13,41 @@ namespace Lesson1_login.Controllers
 public class OrdersController : ControllerBase
 {
         IOrderService _orderService;
-        public OrdersController(IOrderService orderService)
+        IMapper _mapper;
+        public OrdersController(IOrderService orderService, IMapper mapper)
         {
             _orderService = orderService;
+            _mapper = mapper;
         }
     // GET: api/<OrdersController>
     [HttpGet]
-    public async Task<ActionResult<List<Order>>> Get()
+    public async Task<ActionResult<List<OrderDto>>> Get()
     {
 
            List< Order> orders = await _orderService.getAllOrdersAsync();
-           return orders == null ? NotFound() : Ok(orders);
+
+            List<OrderDto> ordersDto = _mapper.Map<List<Order>, List<OrderDto>>(orders);
+
+           return orders == null ? NotFound() : Ok(ordersDto);
     }
 
     // GET api/<OrdersController>/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<Order>> Get(int id)
+    public async Task<ActionResult<OrderDto>> Get(int id)
     {
             Order order = await _orderService.getOrderByIdAsync(id);
-            return order == null ? NoContent() : Ok(order);
+            OrderDto orderDto = _mapper.Map<Order,OrderDto>(order);
+            return orderDto == null ? NoContent() : Ok(orderDto);
         }
 
     // POST api/<OrdersController>
     [HttpPost]
-    public async Task<ActionResult<Order>> Post([FromBody] Order newOrder)
+    public async Task<ActionResult<OrderDto>> Post([FromBody] OrderDto orderDto)
     {
-            Order order = await _orderService.createOrderAsync(newOrder);
-
-            return CreatedAtAction(nameof(Get), new { id = order.Id }, order);
+            Order order = _mapper.Map<OrderDto, Order>(orderDto);
+            Order orderCreated = await _orderService.createOrderAsync(order);
+            OrderDto orderCreatedDto = _mapper.Map<Order, OrderDto>(orderCreated);
+            return CreatedAtAction(nameof(Get), new { id = order.Id }, orderCreatedDto);
 
         }
 
