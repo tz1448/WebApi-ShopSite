@@ -13,9 +13,9 @@ namespace Services
         StoryDbContext _storyDbContext;
         IRatingRepository _ratingRepository;
 
-        public RatingRervice(IRatingRepository ratingRepository, StoryDbContext storyDbContext)
+        public RatingRervice(IRatingRepository ratingRepository)
         {
-            _storyDbContext = storyDbContext;
+            
             _ratingRepository = ratingRepository;
 
         }
