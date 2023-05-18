@@ -27,8 +27,8 @@ namespace Lesson1_login.Controllers
         [HttpGet]
         public async Task<ActionResult<List<CategoryDto>>> Get()
         {
-            
 
+            
             List<Category> categories = await _categoryService.GetAllCategoryAsync();
             List<CategoryDto> categoriesDto = _mapper.Map<List<Category>, List<CategoryDto>>(categories);
             return categories == null ? NotFound() : Ok(categoriesDto);

@@ -129,17 +129,20 @@ async function placeOrder() {
   
         const data = await res.json();
         document.getElementsByTagName("tbody")[0].innerHTML = '';
-        let h_3 = document.createElement("h3");
-        h_3.innerHTML = `Order ${data.id} added successfully`;
-        document.getElementsByTagName("tbody")[0].appendChild(h_3);
-        document.getElementsByTagName("tbody")[0].appendChild
-        let x =document.querySelector('.cart');
-        let y = 8;
-        //.style.display = 'visbale'
-        drawCartDetails();
+        //let h_3 = document.createElement("h3");
+        //h_3.innerHTML = `Order ${data.id} added successfully`;
+        alert(`Order ${data.id} added successfully`)
+        //let img = document.createElement("img");
+        //img.src = `Images/orders.png`
+        //img.style.width = '800px';
+        //document.getElementsByTagName("tbody")[0].appendChild(h_3);
+        //document.getElementsByTagName("tbody")[0].appendChild(img)
+        //document.querySelector('#cart').style.dispaly = 'none';
+          
+        
+       
     }
-    console.log(res);
-    console.log(res.ok);
+  
 }
 function removeShoppingBagFromSessionStorage() {
 
