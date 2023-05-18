@@ -34,7 +34,9 @@ namespace Repositories
         }
         public async Task<Order> createOrderAsync(Order newOrder)
         {
+
             await _storyDbContext.Orders.AddAsync(newOrder);
+            //await _storyDbContext.Orders.AddAsync(newOrder);
             await _storyDbContext.SaveChangesAsync();
             return newOrder;
 

@@ -9,6 +9,8 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Design" Version="1.1.6" />
+    <PackageReference Include="NLog.MailKit" Version="5.0.0" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="5.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
@@ -19,6 +21,17 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Html\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Error404.html" />
+    <None Include="wwwroot\UpdateUserDetails.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

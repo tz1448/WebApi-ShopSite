@@ -1,0 +1,47 @@
+﻿
+<html>
+<head>
+    <link href="Style/SignIn.css" rel="stylesheet" />
+    <script src="Script/Login.js"></script>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body  onload="loadDetails()">
+    <br /><br /><br />
+
+
+    <form>
+        <br />
+        <h1>Update your datails</h1>
+        <div class="inset">
+            <p>
+                <label for="email">EMAIL ADDRESS</label>
+                <input type="text" name="email" id="email">
+            </p>
+            <p>
+                <label for="password">PASSWORD</label>
+                <input id="password" onchange="getPasswordStrength()" onkeypress="getPasswordStrength()" type="password" />
+                <progress id="passwordStrength" value="0" max="4" style="background-color: #ffffff">  </progress><br /><br />
+            </p>
+            <label>LAST NAME</label>
+            <input id="lastName" type="text" /><br /><br />
+            <label>FIRST NAME</label>
+            <input id="firstName" type="text" /><br /><br />
+
+
+
+            <p>
+
+                <label id="msg" style="color:azure"></label>
+
+            </p>
+        </div>
+        <p class="p-container">
+          
+            <span><a href="Products.html">Sign into the shop</a></span>
+
+            <input type="button" onclick="updateUserDetails()" name="go" id="go" value="Update">
+        </p>
+    </form>
+</body>
+</html>

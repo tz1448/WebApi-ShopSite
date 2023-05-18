@@ -41,7 +41,7 @@ function designProduct(product) {
     const template = document.querySelector('#temp-card');
     let templateProduct = template.content.cloneNode(true);
     templateProduct.querySelector('.name').innerText = product.name + ' ' + product.categoryName
-    templateProduct.querySelector('.price').innerText = product.price + '₪';
+    templateProduct.querySelector('.price').innerText = product.price + '$';
     templateProduct.querySelector('.description').innerText = product.description;
     templateProduct.querySelector('button').addEventListener('click', () => addProductToBag(product));
     templateProduct.querySelector('.img-w img').src = `Images/${product.image}`
@@ -122,9 +122,6 @@ async function filterProducts() {
 
 }
 
-
-
-
 function updateCountProducts(countProducts) {
     document.querySelector('#ItemsCountText').innerHTML = countProducts
 }
@@ -133,6 +130,7 @@ function getCountProducts(bag) {
     bag.forEach(p => countProducts += p.quantity);
     return countProducts;
 }
+
 
 
 function addProductToBag(product) {
@@ -151,6 +149,8 @@ function addProductToBag(product) {
     sessionStorage.setItem('bag', JSON.stringify(bag))
 
 }
+
+
 
 
 

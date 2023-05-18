@@ -10,7 +10,7 @@ namespace DTO
 {
     public class UserLoginDto
     {
-        [StringLength(20)]
+        [StringLength(20, ErrorMessage = "password length must be between 5-20", MinimumLength = 5)]
         public string Password { get; set; } = null!;
 
         [EmailAddress(ErrorMessage = "Email not valid")]

@@ -19,7 +19,8 @@ public class ProductsController : ControllerBase
             _productService = productService;
             _mapper = mapper;
         }
-    // GET: api/<ProductsController>
+   
+     // GET: api/<ProductsController>
     [HttpGet]
     public async Task<ActionResult<List<ProductDto>>> Get([FromQuery]  String? desc, [FromQuery]  int? minPrice, [FromQuery] int? maxPrice, [FromQuery] int?[] categories )
     {
@@ -35,22 +36,20 @@ public class ProductsController : ControllerBase
     {
 
             Product product = await _productService.GetProductByIdAsync(id);
-            ProductDto  ProductDto = _mapper.Map<Product, ProductDto>(product);
+            ProductDto  ProductDto = _mapper.Map<Product, ProductDto> (product);
             return product == null ? NoContent() : Ok(ProductDto);
         }
 
     // POST api/<ProductsController>
     [HttpPost]
-    public async  Task<ActionResult<Product>> Post([FromBody] Product product)
+    public async  Task<ActionResult<ProductDto>> Post([FromBody] ProductDto newProductDto)
     {
-            //Product product = _mapper.Map<ProductDto,Product >(newProductDto);
-            //Product newProduct = await _productService.CreateProductAsync(product);
-            //ProductDto ProductDto = _mapper.Map<Product, ProductDto>(newProduct);
-            //return newProduct == null ? NoContent() : Ok(ProductDto);
-          
+            Product product = _mapper.Map<ProductDto, Product>(newProductDto);
             Product newProduct = await _productService.CreateProductAsync(product);
-       
-            return newProduct == null ? NoContent() : Ok(newProduct);
+            ProductDto ProductDto = _mapper.Map<Product, ProductDto>(newProduct);
+            return newProduct == null ? NoContent() : Ok(ProductDto);
+
+         
         }
 
 
